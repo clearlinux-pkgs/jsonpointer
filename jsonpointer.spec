@@ -4,7 +4,7 @@
 #
 Name     : jsonpointer
 Version  : 1.10
-Release  : 23
+Release  : 24
 URL      : https://pypi.python.org/packages/source/j/jsonpointer/jsonpointer-1.10.tar.gz
 Source0  : https://pypi.python.org/packages/source/j/jsonpointer/jsonpointer-1.10.tar.gz
 Summary  : Identify specific nodes in a JSON document (RFC 6901)
