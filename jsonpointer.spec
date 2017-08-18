@@ -4,9 +4,9 @@
 #
 Name     : jsonpointer
 Version  : 1.10
-Release  : 27
-URL      : https://pypi.python.org/packages/source/j/jsonpointer/jsonpointer-1.10.tar.gz
-Source0  : https://pypi.python.org/packages/source/j/jsonpointer/jsonpointer-1.10.tar.gz
+Release  : 28
+URL      : http://pypi.debian.net/jsonpointer/jsonpointer-1.10.tar.gz
+Source0  : http://pypi.debian.net/jsonpointer/jsonpointer-1.10.tar.gz
 Summary  : Identify specific nodes in a JSON document (RFC 6901)
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -19,8 +19,12 @@ BuildRequires : python3-dev
 BuildRequires : setuptools
 
 %description
-python-json-pointer [![Build Status](https://secure.travis-ci.org/stefankoegl/python-json-pointer.png?branch=master)](https://travis-ci.org/stefankoegl/python-json-pointer) [![Coverage Status](https://coveralls.io/repos/stefankoegl/python-json-pointer/badge.png?branch=master)](https://coveralls.io/r/stefankoegl/python-json-pointer?branch=master) ![Downloads](https://pypip.in/d/jsonpointer/badge.png) ![Version](https://pypip.in/v/jsonpointer/badge.png)
 ===================
+        
+        Resolve JSON Pointers in Python
+        -------------------------------
+        
+        Library to resolve JSON Pointers according to
 
 %package bin
 Summary: bin components for the jsonpointer package.
@@ -42,8 +46,11 @@ python components for the jsonpointer package.
 %setup -q -n jsonpointer-1.10
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1484550920
+export SOURCE_DATE_EPOCH=1503094291
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -53,10 +60,13 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 python tests.py
 %install
-export SOURCE_DATE_EPOCH=1484550920
+export SOURCE_DATE_EPOCH=1503094291
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
@@ -67,4 +77,5 @@ python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
+/usr/lib/python3*/*
