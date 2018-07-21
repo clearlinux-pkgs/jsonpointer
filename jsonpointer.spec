@@ -4,17 +4,19 @@
 #
 Name     : jsonpointer
 Version  : 1.10
-Release  : 29
+Release  : 30
 URL      : http://pypi.debian.net/jsonpointer/jsonpointer-1.10.tar.gz
 Source0  : http://pypi.debian.net/jsonpointer/jsonpointer-1.10.tar.gz
 Summary  : Identify specific nodes in a JSON document (RFC 6901)
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: jsonpointer-bin
+Requires: jsonpointer-python3
+Requires: jsonpointer-license
 Requires: jsonpointer-python
+BuildRequires : buildreq-distutils3
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
@@ -29,17 +31,36 @@ BuildRequires : setuptools
 %package bin
 Summary: bin components for the jsonpointer package.
 Group: Binaries
+Requires: jsonpointer-license
 
 %description bin
 bin components for the jsonpointer package.
 
 
+%package license
+Summary: license components for the jsonpointer package.
+Group: Default
+
+%description license
+license components for the jsonpointer package.
+
+
 %package python
 Summary: python components for the jsonpointer package.
 Group: Default
+Requires: jsonpointer-python3
 
 %description python
 python components for the jsonpointer package.
+
+
+%package python3
+Summary: python3 components for the jsonpointer package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the jsonpointer package.
 
 
 %prep
@@ -50,8 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503094291
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1532210097
 python3 setup.py build -b py3
 
 %check
@@ -60,10 +80,10 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 python tests.py
 %install
-export SOURCE_DATE_EPOCH=1503094291
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+mkdir -p %{buildroot}/usr/share/doc/jsonpointer
+cp COPYING %{buildroot}/usr/share/doc/jsonpointer/COPYING
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -75,7 +95,13 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/bin/jsonpointer
 
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/jsonpointer/COPYING
+
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python2*/*
+
+%files python3
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
