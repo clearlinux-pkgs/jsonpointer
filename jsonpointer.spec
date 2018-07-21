@@ -4,7 +4,7 @@
 #
 Name     : jsonpointer
 Version  : 1.10
-Release  : 28
+Release  : 29
 URL      : http://pypi.debian.net/jsonpointer/jsonpointer-1.10.tar.gz
 Source0  : http://pypi.debian.net/jsonpointer/jsonpointer-1.10.tar.gz
 Summary  : Identify specific nodes in a JSON document (RFC 6901)
