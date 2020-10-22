@@ -4,7 +4,7 @@
 #
 Name     : jsonpointer
 Version  : 2.0
-Release  : 40
+Release  : 41
 URL      : https://files.pythonhosted.org/packages/52/e7/246d9ef2366d430f0ce7bdc494ea2df8b49d7a2a41ba51f5655f68cfe85f/jsonpointer-2.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/52/e7/246d9ef2366d430f0ce7bdc494ea2df8b49d7a2a41ba51f5655f68cfe85f/jsonpointer-2.0.tar.gz
 Summary  : Identify specific nodes in a JSON document (RFC 6901)
@@ -17,12 +17,15 @@ Requires: jsonpointer-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 
 %description
-python-json-pointer
 ===================
-[![PyPI version](https://img.shields.io/pypi/v/jsonpointer.svg)](https://pypi.python.org/pypi/jsonpointer/)
-[![Supported Python versions](https://img.shields.io/pypi/pyversions/jsonpointer.svg)](https://pypi.python.org/pypi/jsonpointer/)
-[![Build Status](https://travis-ci.org/stefankoegl/python-json-pointer.png?branch=master)](https://travis-ci.org/stefankoegl/python-json-pointer)
-[![Coverage Status](https://coveralls.io/repos/stefankoegl/python-json-pointer/badge.png?branch=master)](https://coveralls.io/r/stefankoegl/python-json-pointer?branch=master)
+        
+        |PyPI version| |Supported Python versions| |Build Status| |Coverage
+        Status|
+        
+        Resolve JSON Pointers in Python
+        -------------------------------
+        
+        Library to resolve JSON Pointers according to `RFC
 
 %package bin
 Summary: bin components for the jsonpointer package.
@@ -69,12 +72,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583162258
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1603394351
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
