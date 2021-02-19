@@ -4,7 +4,7 @@
 #
 Name     : jsonpointer
 Version  : 2.0
-Release  : 44
+Release  : 45
 URL      : https://files.pythonhosted.org/packages/52/e7/246d9ef2366d430f0ce7bdc494ea2df8b49d7a2a41ba51f5655f68cfe85f/jsonpointer-2.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/52/e7/246d9ef2366d430f0ce7bdc494ea2df8b49d7a2a41ba51f5655f68cfe85f/jsonpointer-2.0.tar.gz
 Summary  : Identify specific nodes in a JSON document (RFC 6901)
